@@ -1,0 +1,34 @@
+<div *ngIf='pedido' class="text-center">
+     <h3 >Pedido {{ pedido.id }}</h3>
+     <h5>nombre:{{ pedido.nombre }} </h5>
+     <h5>apellidos: {{ pedido.apellidos}} </h5>
+     <h5>email: {{pedido.email}} </h5>
+     <h5>fecha de recogida: {{ pedido.fecha }} </h5>
+     <div class="text-center" style="padding-left: 10%; padding-right: 10%;">
+        <table style="width: 100%;">
+            <thead class="thead-dark" style="background-color: #3E3C3B; color: #E6E2E0;">
+                <tr>
+                <th scope="col">producto </th>
+                <th scope="col">cantidad</th>
+                <th scope="col">precio por unidad</th>
+                <th scope="col"> precio </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor=" let producto of pedido.productos" >
+                    <th scope="col"> {{ producto.nombre }} </th>
+                    <th scope="col"> {{ producto.cantidad }} </th>
+                    <th scope="col"> {{ producto.precio }} € </th>
+                    <th scope="col"> {{  producto.precio * producto.cantidad |  number: '.2'  }}€ </th>
+                </tr>
+                <tr style="background-color:#E3E4E9 ;"> 
+                    <th>Precio total: </th>
+                    <th></th>
+                    <th></th>
+                    <th>{{ precioTotal |  number: '.2'}}€</th>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+    </div>
+</div>

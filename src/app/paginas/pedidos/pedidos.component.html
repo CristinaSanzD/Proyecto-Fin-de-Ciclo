@@ -1,0 +1,24 @@
+<h3 class="text-center">Pedidos</h3>
+<br>
+<div style="padding-left: 5%; padding-right: 5%;">
+<table class="table table-hover">
+    <thead class="thead-dark" style="background-color: #3E3C3B; color: #E6E2E0;">
+      <tr>
+        <th scope="col"> </th>
+        <th scope="col">Nombre </th>
+        <th scope="col">Apellidos</th>
+        <th scope="col">Fecha de recogida</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor=" let pedido of pedidos" [routerLink]="['/pedido/',pedido.id]">
+            <th scope="col"> {{ pedido.id }} </th>
+            <th scope="col"> {{ pedido.nombre }} </th>
+            <th scope="col"> {{ pedido.apellidos }} </th>
+            <th scope="col">{{ pedido.fecha }}</th>
+            
+          </tr>
+    </tbody>
+  </table>
+</div>

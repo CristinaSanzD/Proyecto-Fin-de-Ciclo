@@ -1,0 +1,15 @@
+<h3 class="text-center">Stock disponible</h3>
+<div *ngFor="let ingrediente of _stock.ingredientes"  class="text-center" [routerLink]="['/ingrediente/']">
+      <b>{{ ingrediente.ingrediente}}</b>
+       {{ ingrediente.cantidad }}
+        {{ ingrediente.unidad }}
+        <button class="btn btn-xs" style="background-color: rgb(78, 24, 17); color: #E6E2E0;"
+        (click)="borrar(ingrediente.id)">Eliminar</button>&nbsp;
+        <button class="btn btn-xs" style="background-color: #3E3C3B; color: #E6E2E0;"
+        [routerLink]="['/modificarStock/',ingrediente.id]">Modificar</button>
+        <br><br>
+ </div>
+<div class="text-center" style="padding-left: 35%; padding-right: 35%;">
+<button routerLink='/addStock' class="btn btn-block my-4"  type="submit" style="background-color: #313950; color: #E6E2E0;">Añadir stock</button>
+</div>
+<br>

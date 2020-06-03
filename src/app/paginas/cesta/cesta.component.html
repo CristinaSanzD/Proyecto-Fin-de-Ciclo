@@ -1,0 +1,65 @@
+<div class="text-center"> 
+<div *ngIf="cestaSv.productos.length > 0">
+    <div class="row" style="padding-right: 5%;padding-left: 5%;">
+        <div class="col-sm-3">
+            <b>Productos</b>
+        </div>
+        <div class="col-sm-2">
+            <b>Cantidad</b>
+        </div>
+        <div class="col-sm-2">
+            <b>Precio por unidad</b>
+        </div>
+        <div class="col-sm-2">
+            <b>precio</b>
+        </div>
+    </div>
+    <br>
+    <div *ngFor=" let producto of cestaSv.productos"  class="row" style="padding-right: 5%;padding-left: 5%;">
+        <div class="col-sm-3">
+            <img [src]="producto.imagen" width="150px">
+            <p><b>{{producto.nombre}}</b></p>
+        </div>
+        <div class="col-sm-2" style="padding-top: 4%;">
+           <button class="btn btn-sm" style="background-color: #595A60; color: #E6E2E0;"
+           (click)="restar(producto)">-</button> 
+           {{producto.cantidad}}
+           <button class="btn btn-sm" style="background-color: #595A60; color: #E6E2E0;"
+           (click)="sumar(producto)">+</button>
+        </div>
+        <div class="col-sm-2" style="padding-top: 4%;">
+            {{producto.precio}} €
+        </div>
+        <div class="col-sm-2" style="padding-top: 4%;">
+            {{  producto.precio * producto.cantidad |  number: '.2'  }}€ 
+           
+        </div>
+        <div class="col-sm-2" style="padding-top: 4%;">
+            <span class="glyphicon glyphicon-trash" (click)="cestaSv.eliminarCesta(producto.id)"></span>
+        </div>
+    </div>
+    <br>
+    <div class="row" style="padding-right: 5%;padding-left: 5%;">
+        <div class="col-sm-3">
+            <b>total</b>
+        </div>
+        <div class="col-sm-4">  
+        </div>
+        <div class="col-sm-2">
+            {{cestaSv.precioTotal() |  number: '.2' }}€
+        </div>
+    </div>
+    <br>
+    <div style="padding-left:15% ; padding-right: 15%;">
+        <button class="btn btn-block" style="background-color: #3E3C3B; color: #E6E2E0;"
+        routerLink="/pedir">Tramitar pedido</button>
+    </div>
+    
+</div>
+<div *ngIf="cestaSv.productos.length === 0" class="text-center">
+    <div class="alert alert-info" >
+       <h4> Aun no hay ningún producto en la cesta </h4>
+    </div>
+</div>
+</div>
+<br>

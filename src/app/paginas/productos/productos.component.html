@@ -1,0 +1,13 @@
+<div *ngFor="let producto of productos" class="text-center" [routerLink]="['/producto/',producto.id]">
+
+    <div>
+        <img [src]="producto.imagen" width="400px">
+        <h3> {{ producto.nombre }} </h3>
+        <p> {{ producto.precio }}€ unidad</p>
+        <br> 
+    </div>
+</div>
+<div class="text-center" style="padding-left: 25%; padding-right: 25%;" *ngIf="this.userSv.rol=='1' || this.userSv.rol=='2'">
+<button routerLink='/addProd' class="btn btn-block my-4"  type="submit" style="background-color: #313950; color: #E6E2E0;">Añadir Producto</button>
+</div>
+<br>

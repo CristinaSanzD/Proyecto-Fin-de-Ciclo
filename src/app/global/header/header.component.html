@@ -1,0 +1,48 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" routerLink="">Panaderia</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a routerLink="">Inicio</a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" >Panes <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a routerLink="productos/0">Todos los panes</a></li>
+              <li><a routerLink="productos/1">Panes sin gluten</a></li>
+              <li><a routerLink="productos/2">Panes integrales</a></li>
+            </ul>
+          </li>
+          <li *ngIf="this.userSv.rol == '2'"><a routerLink="ingredientes">Ingredientes</a></li>
+          <li *ngIf="this.userSv.rol == '2' || this.userSv.rol== '1'"><a routerLink="pedidos">Pedidos</a></li>
+          <li *ngIf="this.userSv.rol == '2' || this.userSv.rol== '1' || this.userSv.rol== '0'"><a routerLink="MisPedidos"> Mis pedidos</a></li>
+          <li><a routerLink="personal">Personal</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" *ngIf="!this.userSv.haySesion">
+          <li><a routerLink="registro"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a routerLink="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" *ngIf="this.userSv.haySesion">
+          <li (click)="cerrarSesion()"><a>cerrar sesion</a></li>
+          <li><a routerLink="cesta"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li style="padding-top:5%"><input type="text" 
+            (keyup.enter)="buscarProducto( txtBuscar.value )"  placeholder="Buscar..." id="urku-search" class="rk-search-field"  #txtBuscar>
+          </li>
+          <li style="padding-top:4%"> 
+            <button class="btn btn-sm"  (click)="buscarProducto( txtBuscar.value )">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </li>
+        </ul>
+        
+      </div>
+    </div>
+  </nav>

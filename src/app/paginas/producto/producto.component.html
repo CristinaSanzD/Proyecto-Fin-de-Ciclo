@@ -1,0 +1,74 @@
+<div class="text-center" *ngIf="producto">
+    <div class="row">
+        <div class="col-sm-6">
+            <div style="padding-left:5%; padding-top: 5%;">
+                <img [src]="producto.imagen" width="100%">
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+            <div>
+                <h3> {{ producto.nombre }} </h3>
+                <p> {{ producto.precio }}€ unidad</p>
+                <h5><b><u>ingredientes:</u></b></h5>
+                <div *ngFor="let ingrediente of producto.ingredientes" >
+                    <p> {{ ingrediente.ingrediente }} <span *ngIf="this.userSv.rol=='1' || this.userSv.rol=='2'">{{ ingrediente.cantidad }}{{ ingrediente.unidad }}</span></p>
+
+                </div>
+            </div>
+        
+            <br>
+            <br>
+            <div class="row"  *ngIf="this.userSv.rol=='1' || this.userSv.rol=='2'">
+                <div class="col-sm-3">
+                    <form [formGroup]="formPan">
+                        <input type="number" formControlName="cantidad" placeholder="cantidad" min=1 style="width: 100%;">
+                    </form>
+                    <div *ngIf="noCantidad" class="alert-danger">
+                        necesitas añadir cantidad
+                    </div>
+                </div>    
+                <div class="col-sm-3">
+                    <button class="btn btn-sm " style="background-color: #081C51; color: #E6E2E0;"
+                    (click)="comprobarStock()">Hacer Receta</button>
+                    
+                </div>
+                <div class="col-sm-3">
+                    <button class="btn btn-sm "  type="submit" style="background-color: #3E3C3B; color: #E6E2E0;"
+                    [routerLink]="['/modificarProd/',producto.id]">
+                    modificar
+                    </button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="btn btn-sm " (click)="DeleteProd()" type="submit"
+                    style="background-color: rgb(78, 24, 17); color: #E6E2E0;"
+                    routerLink='/productos'>
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+            <br>
+            <div class="row" >
+                <button style="background-color: #3E3C3B; color: #E6E2E0; padding-left: 5%; padding-right: 5%;" 
+                class="btn" (click)="addCarrito(producto)">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                    <p>añadir al carrito</p>
+                </button>
+                <div class="alert-danger" *ngIf="!conectado">
+                    Debe estar conectado para poder añadir ingredientes al carro
+                </div>
+            </div>
+        </div>
+    </div>
+        <br>
+        <div *ngIf="!posibleHacer" class = "alert alert-danger">
+            No es posible hacer la receta.
+        </div>
+        <div *ngIf="restado" class = "alert alert-success">
+            Se han restado correctamente los ingredientes del stock, puede proceder a hacer la receta.
+        </div>
+
+</div>
+
+<br>
+<br>

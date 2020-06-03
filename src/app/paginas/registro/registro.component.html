@@ -1,0 +1,78 @@
+<div style="padding-top: 5%;padding-bottom: 5%; padding-left: 20%; padding-right: 20%;"> 
+    <form class="text-center border border-light p-5" action="#!" [formGroup]="contactForm" >
+
+        <p class="h3 mb-4">Registro</p>
+        <input type="text" formControlName="nombre" class="form-control" placeholder="Nombre">
+        <div class = "alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+            nombre es obligatorio
+        </div>
+        <br>
+        <input type="text" formControlName="apellidos" class="form-control" placeholder="Apelidos">
+        <div class = "alert-danger" *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)">
+            Los apellidos son obligatorios
+         </div>
+        <br>
+        <input type="email" formControlName="email" class="form-control mb-4" placeholder="E-mail">
+        <div class = "alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+            <div *ngIf="email.errors.pattern">
+                El email debe ser valido
+            </div>
+            <div *ngIf="email.errors.required">
+                El email es obligatorio
+            </div>
+         </div>
+        <br>
+        <input type="password" formControlName="password" class="form-control" placeholder="Contraseña" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+        <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+            Mínimo 8 letras y 1 número
+        </small>
+        <div class = "alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+            <div *ngIf="password.errors.pattern">
+                La contraseña no es valida
+            </div>
+            <div *ngIf="password.errors.required">
+                La contraseña es obligatoria
+            </div>
+         </div>
+        <br>
+        <input type="text" formControlName="usuario" class="form-control" placeholder="Nombre de Usuario" >
+        <div class = "alert-danger" *ngIf="usuario.invalid && (usuario.dirty || usuario.touched)">
+            El nombre de usuario es obligatorio
+         </div>
+        <br>
+        <h4>¿qué tipo de usuario eres?</h4>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio"  formControlName="rol" value="0">
+            <label class="form-check-label" for="inlineRadio1">Cliente</label>
+            &nbsp;&nbsp;&nbsp;
+            <input class="form-check-input" type="radio" formControlName="rol"  value="1">
+            <label class="form-check-label" for="inlineRadio2">Empleado</label>
+        </div>
+        <div *ngIf="rol.value == 1 " [formGroup]="claveForm">
+            <input type="text" formControlName="clave" class="form-control" placeholder="Clave de empleado" required>
+            <div *ngIf="claveF.invalid && (claveF.dirty || claveF.touched)" class = "alert-danger">
+                <div *ngIf="claveF.errors.pattern">
+                    La clave no es valida
+                </div>
+                <div *ngIf="claveF.errors.required">
+                    La clave es obligatoria
+                </div>
+            </div>
+            <div *ngIf="!clValida" class = "alert-danger">
+                Debes insertar una clave valida para registrarte como empleado
+            </div>
+        </div>
+        <div class = "alert-danger" *ngIf="mailExistente">
+            El email introducido ya está registrado
+        </div>
+        <div class = "alert-danger" *ngIf="enviado">
+            Debe completar todos los campos correctamente
+        </div>
+        <br>
+        <button class="btn btn-block my-4"  type="submit" 
+        style="background-color: #3E3C3B; color: #E6E2E0;" (click)="onSaveForm()">
+            Registrarse
+        </button>
+        <br>
+    </form>
+</div>

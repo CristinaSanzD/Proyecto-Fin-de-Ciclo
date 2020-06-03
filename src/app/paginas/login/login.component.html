@@ -1,0 +1,37 @@
+<div style="padding-top: 5%;padding-bottom: 5%; padding-left: 20%; padding-right: 20%;" class="text-center" [formGroup]="logInForm" > 
+    
+    <p class="h3 mb-4">Iniciar Sesion</p>
+    <input type="email" formControlName="email" class="form-control mb-4" placeholder="Correo" >
+    <div class = "alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+        El email es obligatorio
+    </div>
+    <br>
+    <input type="password" formControlName="password" class="form-control mb-4" placeholder="Contraseña">
+    <div class = "alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+        La contraseña es obligatoria
+    </div>
+    <div class = "alert-danger" *ngIf="!usuarioValido">
+        Email o contraseña son incorrectos
+    </div>
+    <br>
+    <div class="d-flex justify-content-around">
+        <div>
+            
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" formControlName="mantener">
+                <label class="custom-control-label" for="defaultLoginFormRemember">Mantener sesión iniciada</label>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <button  class="btn btn-block my-4"  type="submit" 
+        style="background-color: #3E3C3B; color: #E6E2E0;"
+        (click)="onSaveForm()">
+        Iniciar sesion
+    </button>
+    <br>
+    <a routerLink="/registro">Registro</a>
+
+
+</div>
