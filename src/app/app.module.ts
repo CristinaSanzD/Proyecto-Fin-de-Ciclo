@@ -67,6 +67,7 @@ import { MisPedidosComponent } from './paginas/mis-pedidos/mis-pedidos.component
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     ReactiveFormsModule,
     AngularFireStorageModule
