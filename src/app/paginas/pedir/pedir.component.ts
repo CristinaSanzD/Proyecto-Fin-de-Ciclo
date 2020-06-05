@@ -82,7 +82,7 @@ export class PedirComponent implements OnInit {
     });
     pdf.add(' ');
     pdf.add('precio total a abonar: ' + Math.round(precioTotal * 100) / 100 + '€');
-    // pdf.create().download();
+    pdf.create().download();
     pdf.create().open();
   }
   guardarPedido() {
